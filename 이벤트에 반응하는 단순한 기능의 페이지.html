@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>오늘의 운세</title>
+  <style>
+    body {
+      font-family: 'Pretendard', 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #f7d9d9, #f7f0d9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #4b4453;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    #fortuneBox {
+      width: 320px;
+      height: 320px;
+      background-image: url();
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      margin: 20px;
+      font-size: 24px;
+      color: #4b4453;
+      border-radius: 30px;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      animation: popIn 1.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #fortuneBox:hover {
+      background: #ffe0e9;
+      transform: scale(1.05);
+    }
+
+    #fortuneButton {
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      border: none;
+      border-radius: 50px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 154, 158, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    #fortuneButton:hover {
+      background: linear-gradient(135deg, #fcb69f, #ff9a9e);
+      transform: scale(1.05);
+    }
+
+    #resultText {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #333;
+      min-height: 40px;
+      animation: fadeInText 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🔮 오늘의 운세 뽑기 🔮</h1>
+
+  <div id="fortuneBox">오늘은...</div>
+
+  <button id="fortuneButton">운세 뽑기!</button>
+
+  <p id="resultText">운세가 여기에 표시됩니다.</p>
+
+  <script>
+    window.addEventListener('load', function() {
+      alert('✨ 오늘의 운세를 확인해보세요! ✨');
+    });
+
+    const fortuneBox = document.getElementById('fortuneBox');
+
+    fortuneBox.addEventListener('mouseover', function() {
+      fortuneBox.textContent = '클릭해서 운세를 받아보세요!';
+    });
+
+    fortuneBox.addEventListener('mouseout', function() {
+      fortuneBox.textContent = '오늘은...';
+    });
+
+    const fortuneButton = document.getElementById('fortuneButton');
+    const resultText = document.getElementById('resultText');
+
+    const fortunes = [
+      "💖 사랑이 가득한 하루가 될 거예요.",
+      "🌟 노력한 만큼 좋은 결과가 찾아옵니다!",
+      "🍀 행운의 기운이 가득해요!",
+      "🌈 예상치 못한 좋은 소식이 찾아올 거예요.",
+      "🔥 도전하는 자에게 기회가 찾아옵니다!",
+      "🌸 새로운 인연이 다가오고 있어요."
+    ];
+
+    fortuneButton.addEventListener('click', function() {
+      const randomIndex = Math.floor(Math.random() * fortunes.length);
+      const selectedFortune = fortunes[randomIndex];
+      resultText.textContent = selectedFortune;
+      console.log("뽑은 운세:", selectedFortune);
+
+      const colors = ['#ffe0e9', '#e0ffe3', '#e0f7ff', '#f0e0ff', '#fff0e0'];
+      fortuneBox.style.background = colors[Math.floor(Math.random() * colors.length)];
+    });
+  </script>
+
+</body>
+</html>
