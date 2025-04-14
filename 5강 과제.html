@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>5강 과제</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      overflow: hidden;
+    }
+    .box {
+      position: absolute;
+      border-radius: 6px;
+      background-color: hsla(0, 80%, 70%, 0.1);
+      mix-blend-mode: screen;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+<script>
+let html = "";
+const count = 50; 
+
+for (let i = 0; i < count; i++) {
+  const size = 100 - i * 2;
+  const x = i * 1.2;
+  const y = i * 1.2;
+  const deg = i * 3.2;
+  const opacity = 0.06 + (i / count) * 0.1;
+
+  html += `<div class="box" style="
+    width: ${size}vw;
+    height: ${size}vh;
+    left: ${x}vw;
+    top: ${y}vh;
+    transform: rotate(${deg}deg);
+    background-color: hsla(${i * 5}, 80%, 65%, ${opacity});
+  "></div>`;
+}
+
+document.write(html);
+
+let mouseX = 0;
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+});
+
+function update() {
+  const boxes = document.querySelectorAll(".box");
+  boxes.forEach((box, i) => {
+    const rot = i * (mouseX * 0.01 + 1);
+    const scale = 1 + Math.sin((Date.now() / 1000) + i * 0.1) * 0.02;
+    box.style.transform = `rotate(${rot}deg) scale(${scale})`;
+  });
+}
+
+setInterval(update, 50);
+</script>
+</body>
+</html>
